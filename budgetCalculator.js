@@ -1,4 +1,7 @@
-//Use the .toFixed(2) method to round the calculated values to two decimal places.
+// Gabriel Cardenas
+// 3/31/2025
+
+// (reminder to myself) Use the .toFixed(2) method to round the calculated values to two decimal places.
 
 button = document.getElementById('calculateBudget');
 monthlyIncome = document.getElementById('monthlyIncome');
@@ -16,9 +19,9 @@ button.addEventListener('click', function() {
     } else {
         savings.textContent = "Monthly Savings: $"+ money_saved;
 
-        for (let i = 1; i <= monthsProjected.value; i++) {
+        for (let i = 1; i <= monthsProjected.value; i++) { // loops through projected months.
             
-            let newSavings = money_saved * i; // Multiplies the savings by # of months
+            let newSavings = money_saved * i; // multiplies the savings by # of months
             let newElement = document.createElement('li');
             newElement.innerHTML = `In ${i} months, you will have saved $${newSavings}`;
             savings.appendChild(newElement);
@@ -27,6 +30,6 @@ button.addEventListener('click', function() {
 });
 
 function calculateBudget(income, expenses) {
-    let Savings = income - expenses;
-    return Savings.toFixed(2);
+    let Savings = income - expenses; 
+    return Savings.toFixed(2); // returns the value of savings
 }

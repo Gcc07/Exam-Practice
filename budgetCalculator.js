@@ -9,23 +9,33 @@ monthlyExpenses = document.getElementById('estimatedExpenses');
 monthsProjected = document.getElementById('monthsProjected');
 savings = document.getElementById('savingsResult');
 
-button.addEventListener('click', function() {
-    let income = monthlyIncome.value;
-    let expenses = monthlyExpenses.value;
-    let money_saved = calculateBudget(income, expenses);
-    console.log(money_saved);
-    if (money_saved <= 0) {
-        alert("You are spending more than you are earning, or earning nothing. Please review your budget.");
-    } else {
-        savings.textContent = "Monthly Savings: $"+ money_saved;
 
-        for (let i = 1; i <= monthsProjected.value; i++) { // loops through projected months.
-            
-            let newSavings = money_saved * i; // multiplies the savings by # of months
-            let newElement = document.createElement('li');
-            newElement.innerHTML = `In ${i} months, you will have saved $${newSavings}`;
-            savings.appendChild(newElement);
+
+button.addEventListener('click', function() {
+    try {
+        let income = monthlyIncome.value;
+        let expenses = monthlyExpenses.value;
+        let months = monthsProjected.value;
+        if (isNaN(income) || isNaN(expenses) || isNaN(months) || income <= 0 || expenses <= 0 || months <= 0) {
+            throw new Error("Please enter valid numeric values for income, expenses, and months.");
+        } else {
+            let money_saved = calculateBudget(income, expenses);
+            if (money_saved <= 0) {
+                throw new Error("You are spending more than you are earning, or earning nothing. Please review your budget.");
+            } else {
+                savings.textContent = "Monthly Savings: $"+ money_saved;
+
+                for (let i = 1; i <= months; i++) { // loops through projected months.
+                    
+                    let newSavings = money_saved * i; // multiplies the savings by # of months
+                    let newElement = document.createElement('li');
+                    newElement.innerHTML = `In ${i} months, you will have saved $${newSavings}`;
+                    savings.appendChild(newElement);
+                }
+            }
         }
+    } catch (error) {
+        alert(error);
     }
 });
 

@@ -29,7 +29,7 @@ button.addEventListener('click', function() {
                     
                     let newSavings = money_saved * i; // multiplies the savings by # of months
                     let newElement = document.createElement('li');
-                    newElement.innerHTML = `In ${i} months, you will have saved $${newSavings}`;
+                    newElement.innerHTML = `In ${i} months, you will have saved $${newSavings.toFixed(2)}`;
                     savings.appendChild(newElement);
                 }
             }

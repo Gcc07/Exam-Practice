@@ -17,7 +17,7 @@ button.addEventListener('click', function() {
         let expenses = monthlyExpenses.value;
         let months = monthsProjected.value;
         if (isNaN(income) || isNaN(expenses) || isNaN(months) || income <= 0 || expenses <= 0 || months <= 0) {
-            throw new Error("Please enter valid numeric values for income, expenses, and months.");
+            throw new Error("Please enter valid positive numeric values for income, expenses, and months.");
         } else {
             let money_saved = calculateBudget(income, expenses);
             if (money_saved <= 0) {
